@@ -126,12 +126,14 @@ double const kMaxLocationLifeTimeInSeconds = 5.0;
     locationManager.showsBackgroundLocationIndicator = showBackgroundLocationIndicator;
   }
 #endif
-  
+
+  [locationManager startMonitoringSignificantLocationChanges];
   [locationManager startUpdatingLocation];
 }
 
 - (void)stopListening {
   [[self getLocationManager] stopUpdatingLocation];
+  [[self getLocationManager] stopMonitoringSignificantLocationChanges];
   self.isListeningForPositionUpdates = NO;
   self.errorHandler = nil;
   self.listenerResultHandler = nil;
